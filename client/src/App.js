@@ -1,10 +1,18 @@
 
 import React , {useState, useEffect} from "react"
+//import Transaction from "../../server/models/transaction";
+import AppBar from './components/AppBar';
+import { TransactionForm } from "./components/TransactionForm";
 //import Form from "..components/Form.js"
+const InitialForm = {
+  amount:0,
+  description:"",
+  date: "",
 
+}
 function App() {
 
-  const [form, setForm] = useState({amount: 0, description: '', date: null})
+  const [form, setForm] = useState(InitialForm)
   const [transactions,setTransactions]= useState([])
   useEffect(()=>{
     fetchTransactions()
@@ -31,6 +39,7 @@ function App() {
     }); 
     const data = await res.json()
     if(res.ok){
+      setForm(InitialForm)//clears input fields
       fetchTransactions() // updates transactions in real time (without reload)
     }
     
@@ -38,6 +47,8 @@ function App() {
   }
   return (
     <div>
+      <AppBar/>
+      <TransactionForm/>
       <form onSubmit={handleSubmit}>
         <input 
           type= "number" 

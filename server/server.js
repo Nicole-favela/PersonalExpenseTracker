@@ -1,10 +1,11 @@
 import express from 'express'
-import mongoose from "mongoose"
+
 import cors from 'cors'
 import * as dotenv from 'dotenv'
 import bodyParser from 'body-parser'
 import TransactionRoutes from './routes/transaction.js'
-import Transaction from './models/Transaction.js'
+
+import connect from './database/mongodb.js'
 dotenv.config()
 const PORT = 4000
 const app = express()
@@ -17,11 +18,10 @@ app.get('/', (req,res)=>{
 
 app.use("/transaction", TransactionRoutes)
 
- await mongoose.connect(process.env.REACT_APP_ATLAS_URI)
- .then(console.log("connection successful"))
+ 
 
 
-
+await connect()
 
 app.listen(PORT, ()=>{
     console.log("server is running at http://localhost:4000")
