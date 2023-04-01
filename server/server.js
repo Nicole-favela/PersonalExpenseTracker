@@ -17,8 +17,8 @@ app.use(bodyParser.json())
 app.get('/', (req,res)=>{
     res.send("hello world")
 });
-app.get('/transaction', async (req, res)=>{ //finds everything in db
-    const transaction= await Transaction.find({})
+app.get('/transaction', async (req, res)=>{ //finds everything in db and sorts
+    const transaction= await Transaction.find({}).sort({createdAt: -1})
     res.json({data: transaction})
 
 })

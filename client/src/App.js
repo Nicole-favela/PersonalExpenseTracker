@@ -9,7 +9,7 @@ function App() {
   useEffect(()=>{
     fetchTransactions()
   },[])
-  async function fetchTransactions(){
+  async function fetchTransactions(){ //default GET
     const res = await fetch('http://localhost:4000/transaction')//fetches data
     const {data} = await res.json();
     setTransactions(data)
@@ -30,6 +30,10 @@ function App() {
       }
     }); 
     const data = await res.json()
+    if(res.ok){
+      fetchTransactions() // updates transactions in real time (without reload)
+    }
+    
     console.log(data)
   }
   return (
