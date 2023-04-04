@@ -3,16 +3,12 @@ import React , {useState, useEffect} from "react"
 //import Transaction from "../../server/models/transaction";
 import AppBar from './components/AppBar';
 import { TransactionForm } from "./components/TransactionForm";
+import TransactionsList from "./components/TransactionsList.js";
 //import Form from "..components/Form.js"
-const InitialForm = {
-  amount:0,
-  description:"",
-  date: "",
 
-}
 function App() {
 
-  const [form, setForm] = useState(InitialForm)
+  
   const [transactions,setTransactions]= useState([])
   useEffect(()=>{
     fetchTransactions()
@@ -21,35 +17,17 @@ function App() {
     const res = await fetch('http://localhost:4000/transaction')//fetches data
     const {data} = await res.json();
     setTransactions(data)
-    console.log(data)
+    console.log(transactions)
 
   }
-  function handleInput(e){ //used to set the form
-    setForm({...form, [e.target.name]: e.target.value})
-  }
-  async function handleSubmit(e){
-    e.preventDefault() //prevent default submission of form
-    //sends form to our api to be stored as a post request
-    const res = await fetch("http://localhost:4000/transaction", {
-      method:"POST", //creates transaction
-      body: JSON.stringify(form),
-      headers:{
-        'content-type': "application/json" //makes sure json format is sent to backend
-      }
-    }); 
-    const data = await res.json()
-    if(res.ok){
-      setForm(InitialForm)//clears input fields
-      fetchTransactions() // updates transactions in real time (without reload)
-    }
-    
-    console.log(data)
-  }
+  
+  
   return (
     <div>
       <AppBar/>
-      <TransactionForm/>
-      <form onSubmit={handleSubmit}>
+      <TransactionForm fetchTransactions={fetchTransactions}/>
+      <TransactionsList transactions={transactions}/>
+      {/* <form onSubmit={handleSubmit}>
         <input 
           type= "number" 
           value = {form.amount}
@@ -72,9 +50,9 @@ function App() {
 
         </form>
 
-        {/* show all transactions in a table*/}
+        show all transactions in a table */}
         <br/>
-      <section>
+      {/* <section>
         <table>
           <thead>
           <th>Amount</th>
@@ -96,7 +74,7 @@ function App() {
 
           
         </table>
-      </section>
+      </section> */}
 
      
     </div>
