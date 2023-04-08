@@ -1,79 +1,93 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import { DataGrid } from '@mui/x-data-grid';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import DeleteIcon from '@mui/icons-material/Delete';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import { TableSortLabel } from '@mui/material';
+import {useState} from 'react'
 
-const columns = [
-  { field: 'id', headerName: 'ID', width: 90 },
-  {
-    field: 'amount',
-    headerName: 'Amount',
-    width: 150,
-    editable: true,
-  },
-  {
-    field: 'description',
-    headerName: 'Description',
-    width: 150,
-    editable: true,
-  },
-  {
-    field: 'date',
-    headerName: 'Date',
-    type: 'number',
-    width: 110,
-    editable: true,
-  },
- 
-];
 
-// const rows = [
-//   { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-//   { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-//   { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-//   { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-//   { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-//   { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-//   { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-//   { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-//   { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-// ];
 
-export default function TransactionsList({ transactions }) {
-  function remove(_id){
-    console.log("id of transaction to delete")
-    console.log(_id)
-  }
+export default function TransactionsList({transactions}) {
+  //const [rowData, setRowData] = useState(rows);
+  const [orderDirection, setOrderDirection] = useState("asc");
+
+  const sortArray = (arr, orderBy) => {
+    switch (orderBy) {
+      case "asc":
+      default:
+        return arr.sort((a, b) =>
+          a.amount > b.amount? 1 : b.amount > a.amount ? -1 : 0
+        );
+      case "desc":
+        return arr.sort((a, b) =>
+          a.amount < b.amount ? 1 : b.amount < a.amount ? -1 : 0
+        );
+    }
+  };
+
+  const handleSortRequest = () => {
+    //setTransactions(sortArray(transactions, orderDirection));
+    sortArray(transactions, orderDirection)
+    setOrderDirection(orderDirection === "asc" ? "desc" : "asc");
+  };
+  
   return (
-    <>
-    {/* add container wrapping this */}
-    <Typography variant= "h6">
-      Transaction List
-    </Typography>
-    <Box sx={{ height: 400, width: '100%' }}>
-      <DataGrid
-        getRowId={(row) => row._id}
-        rows={transactions}
-        columns={columns}
-        // initialState={{
-        //   pagination: {
-        //     paginationModel: {
-        //       pageSize: 5,
-        //     },
-        //   },
-        // }}
-        pageSizeOptions={[5]}
-        checkboxSelection
-        disableRowSelectionOnClick
-      />
-    </Box>
-    
-    {/* for deleting multiple transactions */}
-    <Button variant="outlined" startIcon={<DeleteIcon />} onClick={()=>remove(transactions._id)}>
-        Delete Selected
-    </Button>
-    </>
+    <TableContainer component={Paper} sx={{marginTop:10}}>
+      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+          
+            <TableCell align="left" onClick={handleSortRequest}>
+            <TableSortLabel active={true} direction={orderDirection}>
+              Amount
+              </TableSortLabel>
+            </TableCell>
+            {/* <TableSortLabel
+              active={orderBy === transactions.id}
+              direction={orderBy === transactions.id ? order : 'asc'}
+              onClick={createSortHandler(transactions.id)}
+            >
+              {transactions.label}
+              {orderBy === transactions.id ? (
+                <Box component="span" sx={visuallyHidden}>
+                  {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                </Box>
+              ) : null}
+            </TableSortLabel> */}
+            <TableCell align="right">Description</TableCell>
+            <TableCell align="right">Date</TableCell>
+           
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {transactions.map((row) => (
+            <TableRow
+              key={row.name}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+              <TableCell component="th" scope="row">
+                {row.amount}
+              </TableCell>
+              <TableCell align="right">{row.description}</TableCell>
+              <TableCell align="right">{row.date}</TableCell>
+            
+            </TableRow>
+          ))}
+
+          {/* for sum */}
+          {/* <TableRow className={classes.finalRow}>
+           <TableCell align="right" colSpan={4}>
+             <b>Total Cost:</b> ${totalCost}
+           </TableCell>
+         </TableRow> */}
+
+
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 }
