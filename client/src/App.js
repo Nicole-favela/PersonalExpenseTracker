@@ -1,9 +1,11 @@
 
+//import { Container } from "@mui/system";
 import React , {useState, useEffect} from "react"
 //import Transaction from "../../server/models/transaction";
 import AppBar from './components/AppBar';
 import { TransactionForm } from "./components/TransactionForm";
 import TransactionsList from "./components/TransactionsList.js";
+import Container from '@mui/material/Container'
 //import Form from "..components/Form.js"
 
 function App() {
@@ -26,7 +28,10 @@ function App() {
     <div>
       <AppBar/>
       <TransactionForm fetchTransactions={fetchTransactions}/>
-      <TransactionsList transactions={transactions}/>
+      <Container>
+      <TransactionsList transactions={transactions} fetchTransactions={fetchTransactions}/>
+      </Container>
+      
       {/* <form onSubmit={handleSubmit}>
         <input 
           type= "number" 

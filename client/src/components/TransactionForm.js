@@ -51,6 +51,7 @@ const InitialForm = {
       const data = await res.json()
       if(res.ok){
         setForm(InitialForm)//clears input fields
+        fetchTransactions()
         // fetchTransactions() // updates transactions in real time (without reload)
       }
       

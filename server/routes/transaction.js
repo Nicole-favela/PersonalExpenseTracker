@@ -19,4 +19,10 @@ router.post('/', async (req,res)=>{
     res.json( {message: "sucessfully saved transaction"})
 });
 
+router.delete('/:id', async (req, res)=>{ //
+    // console.log(req.params.id)//for testing
+    await Transaction.findOneAndDelete({_id: req.params.id})
+    res.json({message: "deleted successfully"})
+
+})
 export default router;
