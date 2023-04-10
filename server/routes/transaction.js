@@ -25,4 +25,11 @@ router.delete('/:id', async (req, res)=>{ //
     res.json({message: "deleted successfully"})
 
 })
+
+//for updating
+router.patch('/:id', async (req, res)=>{ //
+    await Transaction.updateOne({_id: req.params.id},{ $set: req.body })
+    res.json({message: "updated successfully"})
+
+})
 export default router;

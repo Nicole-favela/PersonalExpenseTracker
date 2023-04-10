@@ -11,15 +11,13 @@ import Typography from '@mui/material/Typography';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
-
-
-
+import "./TransactionListStyles.css"
 
 
 import InputAdornment from '@mui/material/InputAdornment';
 
 import TextField from '@mui/material/TextField';
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 
 const InitialForm = {
   amount:0,
@@ -29,8 +27,16 @@ const InitialForm = {
 }
 
 
-  export const TransactionForm = ({fetchTransactions}) => {
+  export const TransactionForm = ({fetchTransactions, editTransaction}) => {
     const [form, setForm] = useState(InitialForm)
+    //runs each time there is a change in edittransaction prop
+    useEffect(()=>{
+      if(editTransaction.amount !== undefined){ //if it is not an empty object
+        setForm(editTransaction)
+      }
+
+    },[editTransaction])
+
     function handleChange(e){
       setForm({...form, [e.target.name]: e.target.value})
     }
@@ -41,6 +47,17 @@ const InitialForm = {
     async function handleSubmit(e){
       e.preventDefault() //prevent default submission of form
       //sends form to our api to be stored as a post request
+      const res = editTransaction.amount === undefined ? create() : update()
+
+    }
+    function reload(res){
+      if(res.ok){
+        setForm(InitialForm)//clears input fields
+        fetchTransactions()
+        // fetchTransactions() // updates transactions in real time (without reload)
+      }
+    }
+    async function create(){
       const res = await fetch("http://localhost:4000/transaction", {
         method:"POST", //creates transaction
         body: JSON.stringify(form),
@@ -48,19 +65,26 @@ const InitialForm = {
           'content-type': "application/json" //makes sure json format is sent to backend
         }
       }); 
-      const data = await res.json()
-      if(res.ok){
-        setForm(InitialForm)//clears input fields
-        fetchTransactions()
-        // fetchTransactions() // updates transactions in real time (without reload)
-      }
-      
-      console.log(data)
+    
+      reload(res)
+
+    }
+
+    async function update(){
+      const res = await fetch(`http://localhost:4000/transaction/${editTransaction._id}`, {
+        method:"PATCH", //creates transaction
+        body: JSON.stringify(form),
+        headers:{
+          'content-type': "application/json" //makes sure json format is sent to backend
+        }
+      }); 
+      reload(res)
+
     }
 
     return (
     
-         <Card sx={{ minWidth: 275, marginTop: 10}}>
+         <Card  className ="card-style" sx={{ minWidth: 275, marginTop: 10}}>
       <CardContent>
         <form onSubmit={handleSubmit}>
 
@@ -106,7 +130,18 @@ const InitialForm = {
             />
             
         </LocalizationProvider>
-        <Button type= "submit" variant="outlined">Submit</Button>
+        {editTransaction.amount !== undefined && (
+          <Button type="submit" variant="secondary">
+            Update
+          </Button>
+        )}
+         {editTransaction.amount === undefined && (
+          <Button type="submit" variant="secondary">
+            Submit
+          </Button>
+        )}
+        
+       
        
 
         </form>

@@ -11,9 +11,12 @@ import {useState} from 'react'
 import IconButton from '@mui/material/IconButton';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
+//custom styles
+import "./TransactionListStyles.css"
+import dayjs from 'dayjs';
 
 
-export default function TransactionsList({transactions, fetchTransactions}) {
+export default function TransactionsList({transactions, fetchTransactions,setEditTransaction}) {
   //const [rowData, setRowData] = useState(rows);
   const [orderDirection, setOrderDirection] = useState("asc");
   //const [transactions, setTransactions] = useState('')
@@ -44,6 +47,9 @@ export default function TransactionsList({transactions, fetchTransactions}) {
     }
     
   };
+  function formatDate(date){
+    return dayjs(date).format("DD-MMM, YYYY")
+  }
 
   const handleSortRequest = (e) => {
    
@@ -60,10 +66,10 @@ export default function TransactionsList({transactions, fetchTransactions}) {
   return (
     <>
     <Typography sx={{marginTop: 5}} variant ="h6">Transactions</Typography>
-    <TableContainer component={Paper} sx={{marginTop:2}}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
+    <TableContainer component={Paper} sx={{marginTop:2}} >
+      <Table sx={{ minWidth: 650 }} aria-label="simple table" >
+        <TableHead >
+          <TableRow >
           
             <TableCell align="left" onClick={handleSortRequest}>
             <TableSortLabel active={true} direction={orderDirection}>
@@ -98,18 +104,19 @@ export default function TransactionsList({transactions, fetchTransactions}) {
                 {row.amount}
               </TableCell>
               <TableCell align="center">{row.description}</TableCell>
-              <TableCell align="center">{row.date}</TableCell>
+              <TableCell align="center">{formatDate(row.date)}</TableCell>
               <TableCell align="right">
               <IconButton 
-                  color="secondary" 
+                  color="primary" 
                   component="label"
+                  onClick={()=>setEditTransaction(row)}
                 >
                 
-                  <EditRoundedIcon/>
+                   <EditRoundedIcon/>
                 </IconButton >
                 {/* iconbutton makes it clickable */}
                 <IconButton 
-                  color="secondary" 
+                  color="primary" 
                   component="label"
                   onClick={()=> remove(row._id)}
                 >
