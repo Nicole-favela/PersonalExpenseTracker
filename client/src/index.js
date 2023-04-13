@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import "./index.css" 
 import Login from './pages/Login'
 import Home from './pages/Home'
+import Register from './pages/Register'
 
 import {
   createBrowserRouter,
@@ -27,6 +28,12 @@ const router = createBrowserRouter([
       element: <Login/>,
 
     },
+    {
+      path: "/register",
+      element: <Register/>,
+
+    },
+    
     ],
   },
  

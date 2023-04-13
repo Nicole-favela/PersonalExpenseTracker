@@ -65,7 +65,7 @@ export default function TransactionsList({transactions, fetchTransactions,setEdi
   
   return (
     <>
-    <Typography sx={{marginTop: 5}} variant ="h6">Transactions</Typography>
+    <Typography sx={{marginTop: 5}} variant ="h6" className='transactions'>Transactions</Typography>
     <TableContainer component={Paper} sx={{marginTop:2}} >
       <Table sx={{ minWidth: 650 }} aria-label="simple table" >
         <TableHead >

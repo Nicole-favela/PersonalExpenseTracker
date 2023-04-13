@@ -4,6 +4,7 @@ import cors from 'cors'
 import * as dotenv from 'dotenv'
 import bodyParser from 'body-parser'
 import TransactionRoutes from './routes/transaction.js'
+import AuthApi from './routes/AuthApi.js'
 
 import connect from './database/mongodb.js'
 dotenv.config()
@@ -17,6 +18,7 @@ app.get('/', (req,res)=>{
 });
 
 app.use("/transaction", TransactionRoutes)
+app.use("/auth", AuthApi)
 
  
 

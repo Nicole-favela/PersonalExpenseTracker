@@ -25,13 +25,20 @@ export default function ButtonAppBar() {
           </IconButton>
           <Link to="/" className="home-link" >
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              Personal Expenses Tracker
+               Expense Tracker
             </Typography>
           </Link>
 
+          <div className='nav-menu-options'>
           <Link to="/login" className="login-link">
             <Button color="inherit">Login</Button>
           </Link>
+
+          <Link to="/register" className="register-link">
+            <Button color="inherit">Register</Button>
+          </Link>
+          </div>
+
         </Toolbar>
       </AppBar>
     </Box>
