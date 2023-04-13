@@ -1,6 +1,7 @@
 import {Router} from "express"
 import User from "../models/User.js";
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 const router= Router();
 
 router.post('/register', async (req,res)=>{
@@ -44,5 +45,24 @@ router.post('/register', async (req,res)=>{
 
     console.log('user saved')
     res.status(201).json({message:"user created"})
+})
+
+router.post('/login', async (req,res)=>{
+    const {email, password}= req.body
+    const userExists = await User.findOne({email: req.body.email})
+    if (!userExists){
+        res.status(406).json({message:"password not found"})
+        //console.log('email is already in use')
+        return
+    }
+    //verify users password
+    const matched = await bcrypt.compare(password, userExists.password)
+    if (!matched){
+        res.status(406).json({message: "password does not match"})
+    }
+    //create jwt token
+    const token = jwt.sign({},"some secret.")
+    console.log(token)
+    res.json({message: 'successfully logged in', token})
 })
 export default router
