@@ -7,9 +7,18 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import "./AppBar.css"
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
+import Cookies from 'js-cookie'
+//import { useNavigate } from 'react-router-dom';
 
 export default function ButtonAppBar() {
+  const navigate = useNavigate()
+  function logout(){
+    Cookies.remove("token") //remove token
+    console.log("token has been removed!!!")
+    navigate("/login")
+
+  }
   return (
     <Box sx={{ flexGrow: 1 }} className = "box">
       <AppBar position="static" className = 'app-bar'>
@@ -28,8 +37,9 @@ export default function ButtonAppBar() {
                Expense Tracker
             </Typography>
           </Link>
-
+         
           <div className='nav-menu-options'>
+          <Button color="inherit" onClick={logout}>Logout</Button>
           <Link to="/login" className="login-link">
             <Button color="inherit">Login</Button>
           </Link>

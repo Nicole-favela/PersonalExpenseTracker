@@ -2,6 +2,9 @@ import {Router} from "express"
 import User from "../models/User.js";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
+import * as dotenv from 'dotenv'
+dotenv.config()
+
 const router= Router();
 
 router.post('/register', async (req,res)=>{
@@ -49,19 +52,24 @@ router.post('/register', async (req,res)=>{
 
 router.post('/login', async (req,res)=>{
     const {email, password}= req.body
-    const userExists = await User.findOne({email: req.body.email})
-    if (!userExists){
+    const user = await User.findOne({email: req.body.email})
+    if (!user){
         res.status(406).json({message:"password not found"})
         //console.log('email is already in use')
         return
     }
     //verify users password
-    const matched = await bcrypt.compare(password, userExists.password)
+    const matched = await bcrypt.compare(password, user.password)
     if (!matched){
         res.status(406).json({message: "password does not match"})
     }
     //create jwt token
-    const token = jwt.sign({},"some secret.")
+    const payload = {
+        username: email,
+        _id: user._id,
+
+    }
+    const token = jwt.sign(payload,process.env.JWT_SECRET)
     console.log(token)
     res.json({message: 'successfully logged in', token})
 })

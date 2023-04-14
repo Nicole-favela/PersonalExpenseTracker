@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
-
+import Cookies from 'js-cookie'
 
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
@@ -14,6 +14,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import Link from '@mui/material/Link'
 import {Link as RouterLink} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const theme = createTheme({
     palette: {
@@ -35,6 +36,7 @@ const theme = createTheme({
   
 
 export default function Login() {
+  const navigate = useNavigate()
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -49,8 +51,12 @@ export default function Login() {
             "content-type": "application/json"
         }
     })
+    const {token} = await res.json();
+
     if(res.ok){
-        console.log("login done")
+        Cookies.set('token', token)
+        navigate('/')
+        //console.log("login done, and token is: ", token)
     }
   };
 

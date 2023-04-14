@@ -1,9 +1,10 @@
 import {Router} from 'express'
 import Transaction from "../models/Transaction.js"
+import passport from 'passport';
 
 const router = Router();
 
-router.get('/', async (req, res)=>{ //finds everything in db and sorts from reverse order to show latest one first
+router.get('/', passport.authenticate('jwt', {session: false}), async (req, res)=>{ //finds everything in db and sorts from reverse order to show latest one first
     const transaction= await Transaction.find({}).sort({createdAt: -1})
     res.json({data: transaction})
 

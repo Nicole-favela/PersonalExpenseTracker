@@ -5,6 +5,7 @@ import TransactionsList from "../components/TransactionsList.js";
 import Container from '@mui/material/Container'
 import {Outlet} from "react-router-dom"
 import  {useState, useEffect} from "react"
+import Cookies from 'js-cookie'
 
 export default function Home () {
 const [editTransaction, setEditTransaction] = useState({})
@@ -14,7 +15,13 @@ const [editTransaction, setEditTransaction] = useState({})
   },[])
 
   async function fetchTransactions(){ //default GET
-    const res = await fetch('http://localhost:4000/transaction')//fetches data
+    const token = Cookies.get('token')
+    const res = await fetch('http://localhost:4000/transaction',{
+       headers:{
+        Authorization: `Bearer ${token}`,
+       }
+
+    })//fetches data
     const {data} = await res.json();
     setTransactions(data)
     console.log(transactions)
