@@ -16,24 +16,13 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 
 
-//const theme = createTheme();
-const theme = createTheme({
+
+const darkTheme = createTheme({
     palette: {
-      background: {
-        paper: '#fff',
-      },
-      text: {
-        primary: '#173A5E',
-        secondary: '#2C4164',
-      },
-    //   action: {
-    //     active: '#001E3C',
-    //   },
-    //   success: {
-    //     dark: '#009688',
-    //   },
+      mode: 'dark',
     },
   });
+  
   
 
 export default function Register() {
@@ -60,7 +49,7 @@ export default function Register() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={darkTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box

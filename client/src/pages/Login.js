@@ -16,23 +16,29 @@ import Link from '@mui/material/Link'
 import {Link as RouterLink} from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-const theme = createTheme({
+// const theme = createTheme({
+//     palette: {
+//       background: {
+//         default: '#2C4164',
+//       },
+//       text: {
+//         primary: '#173A5E',
+//         secondary: '#2C4164',
+//       },
+//     //   action: {
+//     //     active: '#001E3C',
+//     //   },
+//     //   success: {
+//     //     dark: '#009688',
+//     //   },
+//     },
+//   });
+const darkTheme = createTheme({
     palette: {
-      background: {
-        default: '#2C4164',
-      },
-      text: {
-        primary: '#173A5E',
-        secondary: '#2C4164',
-      },
-    //   action: {
-    //     active: '#001E3C',
-    //   },
-    //   success: {
-    //     dark: '#009688',
-    //   },
+      mode: 'dark',
     },
   });
+  
   
 
 export default function Login() {
@@ -61,7 +67,7 @@ export default function Login() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={darkTheme}>
       <Grid container component="main" sx={{ height: '100vh' }}>
         <CssBaseline />
         <Grid
