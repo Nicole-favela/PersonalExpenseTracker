@@ -14,6 +14,7 @@ import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
 //custom styles
 import "./TransactionListStyles.css"
 import dayjs from 'dayjs';
+import Cookies from 'js-cookie';
 
 
 export default function TransactionsList({transactions, fetchTransactions,setEditTransaction}) {
@@ -21,11 +22,16 @@ export default function TransactionsList({transactions, fetchTransactions,setEdi
   const [orderDirection, setOrderDirection] = useState("asc");
   //const [transactions, setTransactions] = useState('')
   async function remove(_id){
+    const token = Cookies.get('token')
     if(!window.confirm("Are you sure you want to delete?")){
       return
     }
     const res = await fetch(`http://localhost:4000/transaction/${_id}`, {
       method: "DELETE",
+      headers:{
+      
+        Authorization: `Bearer ${token}`,
+      }
     });
     if(res.ok){
       fetchTransactions() //updates and refetches transactions to display on table

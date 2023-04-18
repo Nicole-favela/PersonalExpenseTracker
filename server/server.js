@@ -9,6 +9,7 @@ import passport from 'passport'
 import passportConfig from'./config/passport.js'
 
 import connect from './database/mongodb.js'
+import UserApi from './routes/UserApi.js'
 
 dotenv.config()
 const PORT = 4000
@@ -24,6 +25,7 @@ app.get('/', (req,res)=>{
 
 app.use("/transaction", TransactionRoutes)
 app.use("/auth", AuthApi)
+app.use("/user", UserApi)
 
  
 

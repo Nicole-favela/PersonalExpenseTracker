@@ -4,6 +4,7 @@ import Home from './pages/Home'
 import Register from './pages/Register'
 import App from './App';
 import VerifyAuth from './utils/VerifyAuth';
+import UnAuth from './utils/UnAuth';
 
 import {
     createBrowserRouter,
@@ -27,13 +28,23 @@ export default createBrowserRouter([
   
       },
       {
+        //register and login shouldnt be visible if user not logged in
         path: "/login",
-        element: <Login/>,
-  
+        element: (
+        <UnAuth>
+            <Login/>
+        </UnAuth>
+        )
       },
       {
         path: "/register",
-        element: <Register/>,
+        element: (
+        <UnAuth>
+            <Register/>,
+        </UnAuth>
+        )
+        
+       
   
       },
       

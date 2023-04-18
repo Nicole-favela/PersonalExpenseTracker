@@ -12,6 +12,7 @@ import Cookies from 'js-cookie'
 //import { useNavigate } from 'react-router-dom';
 
 export default function ButtonAppBar() {
+  const token = Cookies.get("token");
   const navigate = useNavigate()
   function logout(){
     Cookies.remove("token") //remove token
@@ -39,7 +40,11 @@ export default function ButtonAppBar() {
           </Link>
          
           <div className='nav-menu-options'>
-          <Button color="inherit" onClick={logout}>Logout</Button>
+            {/* if user is authenticated, show logout */}
+            {token && (
+                <Button color="inherit" onClick={logout}>Logout</Button>
+
+            )}
           <Link to="/login" className="login-link">
             <Button color="inherit">Login</Button>
           </Link>

@@ -12,6 +12,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import "./TransactionListStyles.css"
+import Cookies from 'js-cookie';
 
 
 import InputAdornment from '@mui/material/InputAdornment';
@@ -28,6 +29,7 @@ const InitialForm = {
 
 
   export const TransactionForm = ({fetchTransactions, editTransaction}) => {
+    const token = Cookies.get('token')
     const [form, setForm] = useState(InitialForm)
     //runs each time there is a change in edittransaction prop
     useEffect(()=>{
@@ -62,7 +64,8 @@ const InitialForm = {
         method:"POST", //creates transaction
         body: JSON.stringify(form),
         headers:{
-          'content-type': "application/json" //makes sure json format is sent to backend
+          'content-type': "application/json", //makes sure json format is sent to backend
+          Authorization: `Bearer ${token}`,
         }
       }); 
     
@@ -75,7 +78,8 @@ const InitialForm = {
         method:"PATCH", //creates transaction
         body: JSON.stringify(form),
         headers:{
-          'content-type': "application/json" //makes sure json format is sent to backend
+          'content-type': "application/json", //makes sure json format is sent to backend
+          Authorization: `Bearer ${token}`,
         }
       }); 
       reload(res)
