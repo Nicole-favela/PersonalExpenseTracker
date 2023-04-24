@@ -42,7 +42,7 @@ export default function ButtonAppBar() {
           <div className='nav-menu-options'>
             {/* if user is authenticated, show logout */}
             {token && (
-                <Button color="inherit" onClick={logout}>Logout</Button>
+                <Button color="inherit"  sx={{ padding: 1, ml: 2  }} onClick={logout}>Logout</Button>
 
             )}
           <Link to="/login" className="login-link">

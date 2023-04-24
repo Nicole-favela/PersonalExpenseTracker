@@ -7,7 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { TableSortLabel, Typography } from '@mui/material';
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import IconButton from '@mui/material/IconButton';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
@@ -20,6 +20,7 @@ import Cookies from 'js-cookie';
 export default function TransactionsList({transactions, fetchTransactions,setEditTransaction}) {
   //const [rowData, setRowData] = useState(rows);
   const [orderDirection, setOrderDirection] = useState("asc");
+  const [totalSum, setTotalSum] = useState(0);
   //const [transactions, setTransactions] = useState('')
   async function remove(_id){
     const token = Cookies.get('token')
@@ -56,6 +57,14 @@ export default function TransactionsList({transactions, fetchTransactions,setEdi
   function formatDate(date){
     return dayjs(date).format("DD-MMM, YYYY")
   }
+ 
+  useEffect(() => {
+    const total = transactions.reduce((acc, row) => acc + row.amount, 0);
+    setTotalSum(total)
+  }, [transactions]);
+
+  
+  
 
   const handleSortRequest = (e) => {
    
@@ -71,7 +80,7 @@ export default function TransactionsList({transactions, fetchTransactions,setEdi
   
   return (
     <>
-    <Typography sx={{marginTop: 5}} variant ="h6" className='transactions'>Transactions</Typography>
+    <Typography sx={{marginTop: 5, boxShadow: 2}} variant ="h6" className='transactions'>Transactions</Typography>
     <TableContainer component={Paper} sx={{marginTop:2}} >
       <Table sx={{ minWidth: 650 }} aria-label="simple table" >
         <TableHead >
@@ -113,7 +122,7 @@ export default function TransactionsList({transactions, fetchTransactions,setEdi
               <TableCell align="center">{formatDate(row.date)}</TableCell>
               <TableCell align="right">
               <IconButton 
-                  color="primary" 
+                  color="inherit" 
                   component="label"
                   onClick={()=>setEditTransaction(row)}
                 >
@@ -131,17 +140,20 @@ export default function TransactionsList({transactions, fetchTransactions,setEdi
                 </IconButton >
                 
               </TableCell>
+
+            
             
             </TableRow>
+
+         
           ))}
 
-          {/* for sum */}
-          {/* <TableRow className={classes.finalRow}>
-           <TableCell align="right" colSpan={4}>
-             <b>Total Cost:</b> ${totalCost}
-           </TableCell>
-         </TableRow> */}
-
+            {/* for calculating sum */}
+            <TableRow>
+              <TableCell rowSpan={4} />
+              <TableCell colSpan={2} align="right">Total</TableCell>
+              <TableCell align="right">{totalSum}</TableCell>
+            </TableRow>
 
         </TableBody>
       </Table>
