@@ -10,12 +10,23 @@ router.get('/', passport.authenticate('jwt', {session: false}), async (req, res)
 
 })
 router.post('/', passport.authenticate('jwt', {session: false}), async (req,res)=>{
-    const {amount,description,date} = req.body
+    const {amount,description,date, categories} = req.body
+    // const categories = [
+    //     {label: 'Shopping'},
+    //     {label: 'Investing'},
+    //     {label: 'Bills'},
+    //     {label: 'Clothing'},
+    
+    // ]
+    console.log('the categories before saving: ', categories)
+     
     const transaction = new Transaction({
         amount,
         description,
         user_id: req.user._id,
         date,
+        categories: categories,
+        
     });
     await transaction.save()
     res.json( {message: "sucessfully saved transaction"})

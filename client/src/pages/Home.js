@@ -24,14 +24,14 @@ const [editTransaction, setEditTransaction] = useState({})
     })//fetches data
     const {data} = await res.json();
     setTransactions(data)
-    console.log(transactions)
+    console.log(transactions.categories)
 
   }
   
   return (
     <>
     <Container>
-    <TransactionForm fetchTransactions={fetchTransactions} editTransaction={editTransaction}/>
+    <TransactionForm fetchTransactions={fetchTransactions} editTransaction={editTransaction} transactions={transactions} />
       <TransactionsList transactions={transactions} fetchTransactions={fetchTransactions} setEditTransaction={setEditTransaction}/>
       </Container>
     

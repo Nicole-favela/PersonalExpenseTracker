@@ -7,7 +7,16 @@ dotenv.config()
 
 const router= Router();
 
+
 router.post('/register', async (req,res)=>{
+
+    // const categories = [
+    //     {label: 'Shopping'},
+    //     {label: 'Investing'},
+    //     {label: 'Bills'},
+    //     {label: 'Clothing'},
+    
+    // ]
     //get form data
    
     //check if user exists
@@ -26,9 +35,6 @@ router.post('/register', async (req,res)=>{
     catch(err){
         console.log(err)
     }
-    // const user = await User({email, password, firstName, lastName})
-    // const savedUser= user.save()
-    // console.log(user)
 
     //hash pw since the user is new
     const saltRounds = 10
@@ -40,11 +46,9 @@ router.post('/register', async (req,res)=>{
         password: hashedPw,
         firstName,
         lastName,
+       
     })
     await user.save() //saved to db
-    
-
-    //
 
     console.log('user saved')
     res.status(201).json({message:"user created"})

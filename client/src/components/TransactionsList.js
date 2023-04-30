@@ -22,6 +22,21 @@ export default function TransactionsList({transactions, fetchTransactions,setEdi
   const [orderDirection, setOrderDirection] = useState("asc");
   const [totalSum, setTotalSum] = useState(0);
   //const [transactions, setTransactions] = useState('')
+  function categoryName(name){
+    if (name === undefined){ //clears last value
+        const value = undefined
+        return value
+        //console.log('label has not been chosen yet')
+    }
+    console.log('in category name function: ', name)
+    
+    // if (name === undefined){
+    //   return 'NA'
+    // }
+    return name.label
+    // const category = categories.find((category)=>category === name)
+    // return category.label
+  }
   async function remove(_id){
     const token = Cookies.get('token')
     if(!window.confirm("Are you sure you want to delete?")){
@@ -104,6 +119,7 @@ export default function TransactionsList({transactions, fetchTransactions,setEdi
               ) : null}
             </TableSortLabel> */}
             <TableCell align="center">Description</TableCell>
+            <TableCell align="center">Category</TableCell>
             <TableCell align="center">Date</TableCell>
             <TableCell align="right">Actions</TableCell>
            
@@ -119,6 +135,7 @@ export default function TransactionsList({transactions, fetchTransactions,setEdi
                 {row.amount}
               </TableCell>
               <TableCell align="center">{row.description}</TableCell>
+              <TableCell align="center">{categoryName(row.categories)}</TableCell>
               <TableCell align="center">{formatDate(row.date)}</TableCell>
               <TableCell align="right">
               <IconButton 

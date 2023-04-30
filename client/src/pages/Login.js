@@ -16,23 +16,7 @@ import Link from '@mui/material/Link'
 import {Link as RouterLink} from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-// const theme = createTheme({
-//     palette: {
-//       background: {
-//         default: '#2C4164',
-//       },
-//       text: {
-//         primary: '#173A5E',
-//         secondary: '#2C4164',
-//       },
-//     //   action: {
-//     //     active: '#001E3C',
-//     //   },
-//     //   success: {
-//     //     dark: '#009688',
-//     //   },
-//     },
-//   });
+
 const darkTheme = createTheme({
     palette: {
       mode: 'dark',
@@ -62,7 +46,10 @@ export default function Login() {
     if(res.ok){
         Cookies.set('token', token)
         navigate('/')
-        //console.log("login done, and token is: ", token)
+        
+    }
+    else{
+      alert('the password or email was incorrect, please try again')
     }
   };
 

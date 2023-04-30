@@ -4,6 +4,7 @@
   import * as React from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
+import { Autocomplete } from '@mui/material';
 
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
@@ -24,11 +25,30 @@ const InitialForm = {
   amount:0,
   description:"",
   date: new Date(),
+  categories: '',
 
 }
 
 
-  export const TransactionForm = ({fetchTransactions, editTransaction}) => {
+  export const TransactionForm = ({fetchTransactions, editTransaction, transactions}) => {
+    // TODO: ADD ID
+    // const categories = [
+    //     {label: 'Shopping', id: 1},
+    //     {label: 'Investing',  id: 2},
+    //     {label: 'Bills',  id: 3},
+    //     {label: 'Clothing', id: 4},
+    // ]
+    const categories = [
+      {label: 'Shopping'},
+      {label: 'Bills'},
+      {label: 'Food'},
+      {label: 'Entertainment'},
+      {label: 'Investing'},
+      {label: 'Hobbies'},
+      {label: 'Misc'},
+  ]
+  
+    
     const token = Cookies.get('token')
     const [form, setForm] = useState(InitialForm)
     //runs each time there is a change in edittransaction prop
@@ -38,7 +58,9 @@ const InitialForm = {
       }
 
     },[editTransaction])
-
+    
+     
+   
     function handleChange(e){
       setForm({...form, [e.target.name]: e.target.value})
     }
@@ -90,12 +112,13 @@ const InitialForm = {
     
          <Card  className ="card-style" sx={{ minWidth: 275, marginTop: 10}}>
       <CardContent>
-        <form onSubmit={handleSubmit}>
+     
 
         <Typography variant="h6">
             Add new transaction
           
         </Typography>
+        <Box component='form' onSubmit={handleSubmit} sx ={{display: 'flex'}} >
         <TextField 
             id="filled-basic" 
             label="amount" 
@@ -124,7 +147,7 @@ const InitialForm = {
             <DesktopDatePicker
             label="transaction date"
             inputFormat="MM/DD/YYYY"
-            size="medium"
+            size="small"
             value={form.date}
             // name = "date"
             onChange={handleDate}
@@ -134,6 +157,23 @@ const InitialForm = {
             />
             
         </LocalizationProvider>
+        {/* for categories */}
+        <div> <br/></div>
+        <Autocomplete
+         
+          size="small"
+          disablePortal
+          id="combo-box-demo"
+          options={categories}
+          onChange={(e, newValue) => {
+            setForm({...form, categories: newValue});
+          }}
+         // onChange={handleChange}
+          //getOptionLabel={(transactions)=>transactions.description}
+          sx={{ width: 200 }}
+          renderInput={(params) => <TextField {...params} label="category" />}
+      />
+
         {editTransaction.amount !== undefined && (
           <Button type="submit" variant="secondary">
             Update
@@ -148,7 +188,7 @@ const InitialForm = {
        
        
 
-        </form>
+        </Box>
       
       </CardContent>
     

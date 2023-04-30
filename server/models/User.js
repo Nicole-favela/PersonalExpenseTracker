@@ -6,6 +6,8 @@ const userSchema = new Schema({
     lastName: {type: String,required:[ 'lastName required']},
     email: {type: String,required:['email required']},
     password: {type: String,required:['pw required']},
+   
+     
     
 }, {timestamps:true})
 export default new mongoose.model('User', userSchema)
