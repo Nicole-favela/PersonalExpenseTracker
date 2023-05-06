@@ -5,14 +5,6 @@ import router from './routes.js'
 import { RouterProvider } from 'react-router-dom';
 
 import reportWebVitals from './reportWebVitals';
-//import "./index.css" 
-
-//for protecting home page route for non-auth users
-
-
-
-
-
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

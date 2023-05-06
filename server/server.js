@@ -24,6 +24,7 @@ app.get('/', (req,res)=>{
 });
 
 app.use("/transaction", TransactionRoutes)
+//app.use("/transaction/category-sum", TransactionRoutes)
 app.use("/auth", AuthApi)
 app.use("/user", UserApi)
 

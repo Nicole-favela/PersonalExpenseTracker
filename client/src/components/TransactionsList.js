@@ -28,7 +28,7 @@ export default function TransactionsList({transactions, fetchTransactions,setEdi
         return value
         //console.log('label has not been chosen yet')
     }
-    console.log('in category name function: ', name)
+    //console.log('in category name function: ', name)
     
     // if (name === undefined){
     //   return 'NA'

@@ -9,15 +9,10 @@ router.get('/', passport.authenticate('jwt', {session: false}), async (req, res)
     res.json({data: transaction})
 
 })
+
 router.post('/', passport.authenticate('jwt', {session: false}), async (req,res)=>{
     const {amount,description,date, categories} = req.body
-    // const categories = [
-    //     {label: 'Shopping'},
-    //     {label: 'Investing'},
-    //     {label: 'Bills'},
-    //     {label: 'Clothing'},
-    
-    // ]
+   
     console.log('the categories before saving: ', categories)
      
     const transaction = new Transaction({
@@ -45,4 +40,20 @@ router.patch('/:id', passport.authenticate('jwt', {session: false}), async (req,
     res.json({message: "updated successfully"})
 
 })
+
+router.get('/category-sum', passport.authenticate('jwt', {session: false}), async (req, res) => {
+    try {
+     
+      const categories = ['Shopping', 'Bills', 'Food', 'Entertainment', 'Investing', 'Hobbies', 'Misc'];
+      const result = await Transaction.aggregate([
+        { $match: { 'categories.label': { $in: categories }, user_id: req.user._id  } }, // Only consider transactions with one of the specified categories with the current user's user_id
+        { $group: { _id: '$categories.label', category_sum: { $sum: '$amount' } } }, // Group by category and sum amounts
+        { $project: { category: '$_id', category_sum: 1, _id: 0 } } // Format result to match obj format
+      ]);
+      res.json({data: result});
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  });
 export default router;

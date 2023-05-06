@@ -9,6 +9,9 @@ import MenuIcon from '@mui/icons-material/Menu';
 import "./AppBar.css"
 import {Link, useNavigate} from 'react-router-dom'
 import Cookies from 'js-cookie'
+import { UserIcon } from './UserIcon';
+
+
 //import { useNavigate } from 'react-router-dom';
 
 export default function ButtonAppBar() {
@@ -46,13 +49,16 @@ export default function ButtonAppBar() {
 
             )}
           <Link to="/login" className="login-link">
-            <Button color="inherit">Login</Button>
+            <Button color="inherit" sx={{ padding: 1, ml: 1  }} >Login</Button>
           </Link>
 
           <Link to="/register" className="register-link">
-            <Button color="inherit">Register</Button>
+            <Button color="inherit" sx={{ padding: 1, ml: 1  }} >Register</Button>
           </Link>
+
+
           </div>
+          {/* <UserIcon/> */}
 
         </Toolbar>
       </AppBar>

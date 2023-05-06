@@ -14,5 +14,20 @@ router.get('/', passport.authenticate("jwt", {session: false}), (req,res)=>{
     res.json({user: req.user})
 })
 
+// app.get('/shopping-sum', async (req, res) => {
+//     try {
+//        const results = await Transaction.aggregate([
+//           { $match: { 'categories.label': 'Shopping' } },
+//           { $group: { _id: null, total: { $sum: '$amount' } } }
+//        ]);
+//        res.json({ sum: results[0].total });
+//     } catch (error) {
+//        console.error(error);
+//        res.status(500).send('An error occurred');
+//     }
+//  });
+
+
+
 
 export default router

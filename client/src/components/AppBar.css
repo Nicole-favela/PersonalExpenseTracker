@@ -25,6 +25,7 @@
     color:rgb(151, 150, 150);
     text-decoration: none;
     padding-left: 550px;
+    display:flex;
     
 
 
@@ -34,5 +35,6 @@
     color:rgb(151, 150, 150);
     text-decoration: none;
     white-space: nowrap;
+    display:flex;
    
 }

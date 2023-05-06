@@ -31,13 +31,7 @@ const InitialForm = {
 
 
   export const TransactionForm = ({fetchTransactions, editTransaction, transactions}) => {
-    // TODO: ADD ID
-    // const categories = [
-    //     {label: 'Shopping', id: 1},
-    //     {label: 'Investing',  id: 2},
-    //     {label: 'Bills',  id: 3},
-    //     {label: 'Clothing', id: 4},
-    // ]
+   
     const categories = [
       {label: 'Shopping'},
       {label: 'Bills'},
@@ -67,6 +61,7 @@ const InitialForm = {
     function handleDate(newValue){
       setForm({...form,date: newValue})
     }
+  
 
     async function handleSubmit(e){
       e.preventDefault() //prevent default submission of form
@@ -78,7 +73,7 @@ const InitialForm = {
       if(res.ok){
         setForm(InitialForm)//clears input fields
         fetchTransactions()
-        // fetchTransactions() // updates transactions in real time (without reload)
+      
       }
     }
     async function create(){
@@ -97,7 +92,7 @@ const InitialForm = {
 
     async function update(){
       const res = await fetch(`http://localhost:4000/transaction/${editTransaction._id}`, {
-        method:"PATCH", //creates transaction
+        method:"PATCH", 
         body: JSON.stringify(form),
         headers:{
           'content-type': "application/json", //makes sure json format is sent to backend
@@ -168,7 +163,8 @@ const InitialForm = {
           onChange={(e, newValue) => {
             setForm({...form, categories: newValue});
           }}
-         // onChange={handleChange}
+          //onChange ={handleCategory(newValue)}
+          //onChange={handleChange}
           //getOptionLabel={(transactions)=>transactions.description}
           sx={{ width: 200 }}
           renderInput={(params) => <TextField {...params} label="category" />}

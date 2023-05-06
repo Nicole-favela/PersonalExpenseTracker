@@ -1,0 +1,18 @@
+h3{
+    color:rgb(166, 172, 188);
+}
+h2{
+    color:rgb(166, 172, 188);
+}
+h4{
+    color:rgb(142, 146, 145);
+}
+.pie-chart-container{
+    height: 600px;
+    margin-left: auto ;
+    margin-right: auto;
+    
+   
+    /* display: inline-block; */
+
+}
