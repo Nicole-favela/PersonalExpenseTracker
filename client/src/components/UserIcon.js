@@ -12,30 +12,6 @@ export const UserIcon = () => {
    // const [editTransaction, setEditTransaction] = useState({})
   const [curUser,setCurUser]= useState(InitialForm)
   
-
-  //async function fetchuser(){ //default GET
-//     const token = Cookies.get('token')
-//     const res = await fetch('http://localhost:4000/user',{
-//        headers:{
-//         Authorization: `Bearer ${token}`,
-//        }
-
-//     })//fetches data
-//     if (!res.ok){
-//         alert('issue getting user')
-       
-//     }
-//     const {data} = await res.json();
-//     //const firstName = data.firstName
-//     setCurUser(data)
-//     alert("data is: ,", data.firstName)
-    
-//     //console.log(user)
-
-//   }
-//   useEffect(()=>{
-//     fetchuser()
-//   },[])
   
   return (
     <div>

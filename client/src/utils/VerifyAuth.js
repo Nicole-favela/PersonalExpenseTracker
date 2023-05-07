@@ -10,7 +10,7 @@ export default function VerifyAuth({children}){
     const token = Cookies.get("token");
     async function fetchUser(){
         setisLoading(true)
-        const res = await fetch("http://localhost:4000/user", {
+        const res = await fetch("https://expense-tracker-backend-30hw.onrender.com/user", {
             headers: {
                 Authorization: `Bearer ${token}`
             },
