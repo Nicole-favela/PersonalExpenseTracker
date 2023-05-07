@@ -36,7 +36,7 @@ export default function Register() {
       email: data.get('email'),
       password: data.get('password'),
     };
-    const res = await fetch('http://localhost:4000/auth/register',{
+    const res = await fetch('https://expense-tracker-backend-30hw.onrender.com/auth/register',{
         method: "POST",
         body: JSON.stringify(form),
         headers: {

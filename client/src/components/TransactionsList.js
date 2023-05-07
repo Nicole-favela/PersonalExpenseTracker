@@ -42,7 +42,7 @@ export default function TransactionsList({transactions, fetchTransactions,setEdi
     if(!window.confirm("Are you sure you want to delete?")){
       return
     }
-    const res = await fetch(`http://localhost:4000/transaction/${_id}`, {
+    const res = await fetch(`https://expense-tracker-backend-30hw.onrender.com/transaction/${_id}`, {
       method: "DELETE",
       headers:{
       

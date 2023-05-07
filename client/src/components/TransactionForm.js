@@ -77,7 +77,7 @@ const InitialForm = {
       }
     }
     async function create(){
-      const res = await fetch("http://localhost:4000/transaction", {
+      const res = await fetch("https://expense-tracker-backend-30hw.onrender.com/transaction", {
         method:"POST", //creates transaction
         body: JSON.stringify(form),
         headers:{
@@ -91,7 +91,7 @@ const InitialForm = {
     }
 
     async function update(){
-      const res = await fetch(`http://localhost:4000/transaction/${editTransaction._id}`, {
+      const res = await fetch(`https://expense-tracker-backend-30hw.onrender.com/transaction/${editTransaction._id}`, {
         method:"PATCH", 
         body: JSON.stringify(form),
         headers:{

@@ -30,7 +30,7 @@ const [dataSum, setDataSum] = useState(InitialValue)
 
   async function fetchTransactions(){ //default GET
     const token = Cookies.get('token')
-    const res = await fetch('http://localhost:4000/transaction',{
+    const res = await fetch('https://expense-tracker-backend-30hw.onrender.com/transaction',{
        headers:{
         Authorization: `Bearer ${token}`,
        }
