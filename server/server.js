@@ -12,7 +12,8 @@ import connect from './database/mongodb.js'
 import UserApi from './routes/UserApi.js'
 
 dotenv.config()
-const PORT = 4000
+
+const PORT = process.env.PORT || 3030;;
 const app = express()
 app.use(cors())
 app.use(bodyParser.json())
@@ -34,5 +35,5 @@ app.use("/user", UserApi)
 await connect()
 
 app.listen(PORT, ()=>{
-    console.log("server is running at http://localhost:4000")
+    console.log(`server is running at ${PORT}`)
 })
