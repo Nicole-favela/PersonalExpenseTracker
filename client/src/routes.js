@@ -40,7 +40,7 @@ export default createBrowserRouter([
         path: "/register",
         element: (
         <UnAuth>
-            <Register/>,
+            <Register/>
         </UnAuth>
         )
         
