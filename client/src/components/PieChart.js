@@ -24,7 +24,7 @@ export default function PieChart({fetchTransactions, transactions}){
       //for summing category amounts 
       async function fetchSum(){
         const token = Cookies.get('token')
-        const res = await fetch('http://localhost:4000/transaction/category-sum',{
+        const res = await fetch('https://expense-tracker-backend-30hw.onrender.com/transaction/category-sum',{
            headers:{
             Authorization: `Bearer ${token}`,
            }
