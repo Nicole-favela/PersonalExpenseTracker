@@ -48,13 +48,18 @@ export default function ButtonAppBar() {
                 <Button color="inherit"  sx={{ padding: 1, ml: 2  }} onClick={logout}>Logout</Button>
 
             )}
+
+            {!token && (
           <Link to="/login" className="login-link">
             <Button color="inherit" sx={{ display: 'flex', justifyContent: 'space-between',padding: 1, ml: 1  }} >Login</Button>
           </Link>
-
+            )}
+             {!token && (
           <Link to="/register" className="register-link">
             <Button color="inherit"  sx={{ display: 'flex', justifyContent: 'space-between', padding: 1, ml: 1 }}>Register</Button>
           </Link>
+            )}
+         
 
 
           </div>
