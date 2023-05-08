@@ -9,8 +9,8 @@
 }
 @media screen and (max-width:640px){
     .card-content{
-        width: 200px;
-        
+        max-width: 90%;
+        margin: auto;
         
     }
     
