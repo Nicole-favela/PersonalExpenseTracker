@@ -1,4 +1,4 @@
-import { Navigate, redirect, useRevalidator } from 'react-router-dom'; //moves user to different route
+import { Navigate, redirect, useRevalidator, useNavigate } from 'react-router-dom'; //moves user to different route
 import Cookies from "js-cookie"
 import { useEffect, useState } from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 
 
 export default function VerifyAuth({children}){
+    const navigate = useNavigate()
     const [isLoading, setisLoading] = useState(false)
     const token = Cookies.get("token");
     async function fetchUser(){
@@ -19,7 +20,9 @@ export default function VerifyAuth({children}){
         console.log('in verify auth res is: ', res)
         if (!res.ok){
             console.log("redirecting to login")
-            redirect('/login')
+            //redirect('/login')
+            navigate('/login')
+            //<Navigate to= "/login" replace={true}/>
         }
         // const {user} = await res.json()
        
