@@ -21,6 +21,8 @@
     }
     .card-style .card-content .form{
         font-size: 1.4rem;
+        max-width: 90%;
+        margin: auto;
        
     }
        

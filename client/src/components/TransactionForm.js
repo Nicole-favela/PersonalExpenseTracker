@@ -105,7 +105,7 @@ const InitialForm = {
 
     return (
     
-         <Card  className ="card-style" sx={{ minWidth: 275, marginTop: 10}}>
+         <Card  className ="card-style" sx={{ minWidth: 350, marginTop: 10}}>
       <CardContent className= 'card-content'>
      
 
