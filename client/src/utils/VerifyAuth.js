@@ -16,10 +16,11 @@ export default function VerifyAuth({children}){
             },
         } )
         setisLoading(false)
+        console.log('in verify auth res is: ', res)
         if (!res.ok){
             redirect('/login')
         }
-        const {user} = await res.json()
+        // const {user} = await res.json()
        
        
     }
