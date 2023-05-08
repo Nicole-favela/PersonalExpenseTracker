@@ -26,7 +26,7 @@ export default function ButtonAppBar() {
   return (
     <Box sx={{ flexGrow: 1 }} className = "box">
       <AppBar position="static" className = 'app-bar'>
-        <Toolbar className='tool-bar' sx={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Toolbar className='tool-bar' >
           <IconButton
             size="large"
             edge="start"
@@ -49,11 +49,11 @@ export default function ButtonAppBar() {
 
             )}
           <Link to="/login" className="login-link">
-            <Button color="inherit" sx={{ padding: 1, ml: 1  }} >Login</Button>
+            <Button color="inherit" sx={{ display: 'flex', justifyContent: 'space-between',padding: 1, ml: 1  }} >Login</Button>
           </Link>
 
           <Link to="/register" className="register-link">
-            <Button color="inherit" sx={{ padding: 1, ml: 1  }} >Register</Button>
+            <Button color="inherit"  sx={{ display: 'flex', justifyContent: 'space-between', padding: 1, ml: 1 }}>Register</Button>
           </Link>
 
 
