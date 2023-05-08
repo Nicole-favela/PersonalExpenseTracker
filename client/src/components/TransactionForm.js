@@ -167,7 +167,7 @@ const InitialForm = {
           //onChange={handleChange}
           //getOptionLabel={(transactions)=>transactions.description}
           sx={{ width: 200 }}
-          renderInput={(params) => <TextField {...params} label="category" />}
+          renderInput={(params) => (<TextField {...params} size="small" label="category" />)}
       />
 
         {editTransaction.amount !== undefined && (
