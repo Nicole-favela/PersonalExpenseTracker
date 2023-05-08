@@ -18,6 +18,7 @@ export default function VerifyAuth({children}){
         setisLoading(false)
         console.log('in verify auth res is: ', res)
         if (!res.ok){
+            console.log("redirecting to login")
             redirect('/login')
         }
         // const {user} = await res.json()
