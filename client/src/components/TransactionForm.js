@@ -66,7 +66,7 @@ const InitialForm = {
     async function handleSubmit(e){
       e.preventDefault() //prevent default submission of form
       //sends form to our api to be stored as a post request
-      const res = editTransaction.amount === undefined ? create() : update()
+      editTransaction.amount === undefined ? create() : update()
 
     }
     function reload(res){
