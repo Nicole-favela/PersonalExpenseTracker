@@ -22,15 +22,15 @@ import TextField from '@mui/material/TextField';
 import {useState, useEffect} from 'react'
 
 const InitialForm = {
-  amount:0,
-  description:"",
+  amount: 0,
+  description: "",
   date: new Date(),
   categories: '',
 
 }
 
 
-  export const TransactionForm = ({fetchTransactions, editTransaction, transactions}) => {
+  export const TransactionForm = ({fetchTransactions, editTransaction}) => {
    
     const categories = [
       {label: 'Shopping'},
@@ -59,7 +59,7 @@ const InitialForm = {
       setForm({...form, [e.target.name]: e.target.value})
     }
     function handleDate(newValue){
-      setForm({...form,date: newValue})
+      setForm({...form, date: newValue})
     }
   
 
