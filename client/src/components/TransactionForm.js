@@ -113,7 +113,7 @@ const InitialForm = {
             Add new transaction
           
         </Typography>
-        <Box component='form' onSubmit={handleSubmit} sx ={{display: 'flex'}} >
+        <Box component='form' onSubmit={handleSubmit} sx ={{display: 'flex', '& .MuiTextField-root': { m: 1, width: '25ch' }}} >
         <TextField 
             id="filled-basic" 
             label="amount" 
