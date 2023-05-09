@@ -166,7 +166,7 @@ const InitialForm = {
           //onChange ={handleCategory(newValue)}
           //onChange={handleChange}
           //getOptionLabel={(transactions)=>transactions.description}
-          sx={{ width: 200 }}
+          sx={{ width: 200, marginRight: 5 }}
           renderInput={(params) => (<TextField {...params} size="small" label="category" />)}
       />
 
