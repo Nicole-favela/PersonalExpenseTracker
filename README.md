@@ -1,20 +1,21 @@
-# Personal Expenses tracker 
+# MERN Stack Personal Expenses tracker 
 
-Allows user to keep track of daily expenses by logging them and entering descriptions
+This is a MERN stack web application for users to manage their transactions, classify them by category, and view expenses breakdown using a pie chart via chart js. Users can register, log in, create, view, edit, sort by amount, and delete transactions. This application is built with:
 
-Includes login for saving items and reviewing them later
+MongoDB,
+Express,
+React,
+Node.js
+
+### `Usage:`
+1. Register or log in to access the app.
+2. Create a transaction, add a description, amount, date, and category.
+3. View, edit, or delete a transaction on the transaction page.
+4. Sort transactions by amount or category on the transaction page.
+5. Classify transactions by choosing from existing categories.
+6. View a pie chart breakdown of expenses by category on the dashboard.
+7. Log out when finished.
 
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
