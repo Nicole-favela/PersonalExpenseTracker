@@ -51,7 +51,7 @@ const InitialForm = {
         setForm(editTransaction)
       }
       else{
-        setForm(InitialForm)
+        setForm({})
       }
 
     },[editTransaction])
