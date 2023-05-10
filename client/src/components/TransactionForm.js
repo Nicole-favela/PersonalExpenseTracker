@@ -50,6 +50,9 @@ const InitialForm = {
       if(editTransaction.amount !== undefined){ //if it is not an empty object
         setForm(editTransaction)
       }
+      else{
+        setForm(InitialForm)
+      }
 
     },[editTransaction])
     
@@ -65,7 +68,6 @@ const InitialForm = {
 
     async function handleSubmit(e){
       e.preventDefault() //prevent default submission of form
-      //sends form to our api to be stored as a post request
       editTransaction.amount === undefined ? create() : update()
 
     }
@@ -163,9 +165,7 @@ const InitialForm = {
           onChange={(e, newValue) => {
             setForm({...form, categories: newValue});
           }}
-          //onChange ={handleCategory(newValue)}
-          //onChange={handleChange}
-          //getOptionLabel={(transactions)=>transactions.description}
+
           sx={{ width: 200, marginRight: 5 }}
           renderInput={(params) => (<TextField {...params} size="small" label="category" />)}
       />
