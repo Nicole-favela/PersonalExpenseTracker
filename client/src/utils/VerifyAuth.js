@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 
-
+//checks if user is logged in
 export default function VerifyAuth({children}){
     const navigate = useNavigate()
     const [isLoading, setisLoading] = useState(false)

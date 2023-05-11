@@ -30,7 +30,7 @@ const InitialForm = {
 }
 
 
-  export const TransactionForm = ({fetchTransactions, editTransaction}) => {
+  export const TransactionForm = ({fetchTransactions, editTransaction, setEditTransaction}) => {
    
     const categories = [
       {label: 'Shopping'},
@@ -75,6 +75,7 @@ const InitialForm = {
       if(res.ok){
         setForm(InitialForm)//clears input fields
         fetchTransactions()
+        setEditTransaction(et => ({...et, amount: undefined}))
       
       }
     }
@@ -102,6 +103,7 @@ const InitialForm = {
         }
       }); 
       reload(res)
+      
 
     }
 

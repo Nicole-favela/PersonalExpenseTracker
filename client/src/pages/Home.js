@@ -46,7 +46,7 @@ const [dataSum, setDataSum] = useState(InitialValue)
   return (
     <>
     <Container>
-    <TransactionForm fetchTransactions={fetchTransactions} editTransaction={editTransaction}  />
+    <TransactionForm fetchTransactions={fetchTransactions} editTransaction={editTransaction} setEditTransaction={setEditTransaction} />
       <TransactionsList transactions={transactions} fetchTransactions={fetchTransactions} setEditTransaction={setEditTransaction}/>
       <PieChart fetchTransactions={fetchTransactions} transactions={transactions}/>
       </Container>
