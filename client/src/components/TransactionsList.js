@@ -18,24 +18,18 @@ import Cookies from 'js-cookie';
 
 
 export default function TransactionsList({transactions, fetchTransactions,setEditTransaction}) {
-  //const [rowData, setRowData] = useState(rows);
+  
   const [orderDirection, setOrderDirection] = useState("asc");
   const [totalSum, setTotalSum] = useState(0);
-  //const [transactions, setTransactions] = useState('')
+  
   function categoryName(name){
     if (name === undefined){ //clears last value
         const value = undefined
         return value
-        //console.log('label has not been chosen yet')
     }
-    //console.log('in category name function: ', name)
-    
-    // if (name === undefined){
-    //   return 'NA'
-    // }
+   
     return name.label
-    // const category = categories.find((category)=>category === name)
-    // return category.label
+    
   }
   async function remove(_id){
     const token = Cookies.get('token')
@@ -81,15 +75,9 @@ export default function TransactionsList({transactions, fetchTransactions,setEdi
   
   
 
-  const handleSortRequest = (e) => {
-   
-    
-    //setTransactions(sortArray(transactions, orderDirection));
-    
+  const handleSortRequest = (e) => { 
     sortArray(transactions, orderDirection)
-    
     setOrderDirection(orderDirection === "asc" ? "desc" : "asc");
-    
     
   };
   
@@ -158,11 +146,8 @@ export default function TransactionsList({transactions, fetchTransactions,setEdi
                 
               </TableCell>
 
-            
-            
             </TableRow>
 
-         
           ))}
 
             {/* for calculating sum */}

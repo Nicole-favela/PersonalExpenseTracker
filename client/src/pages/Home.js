@@ -1,9 +1,9 @@
 import React from 'react'
-import AppBar from '../components/AppBar';
+
 import { TransactionForm } from "../components/TransactionForm";
 import TransactionsList from "../components/TransactionsList.js";
 import Container from '@mui/material/Container'
-import {Outlet} from "react-router-dom"
+
 import  {useState, useEffect} from "react"
 import Cookies from 'js-cookie'
 import PieChart from '../components/PieChart.js';
@@ -18,10 +18,9 @@ const [dataSum, setDataSum] = useState(InitialValue)
   const [transactions,setTransactions]= useState([])
   function reload(res){
     if(res.ok){
-      //setForm(InitialForm)//clears input fields
+      
       fetchTransactions()
-      //fetchSum()
-      // fetchTransactions() // updates transactions in real time (without reload)
+    
     }
   }
   useEffect(()=>{

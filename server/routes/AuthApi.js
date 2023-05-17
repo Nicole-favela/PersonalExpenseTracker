@@ -10,15 +10,6 @@ const router= Router();
 
 router.post('/register', async (req,res)=>{
 
-    // const categories = [
-    //     {label: 'Shopping'},
-    //     {label: 'Investing'},
-    //     {label: 'Bills'},
-    //     {label: 'Clothing'},
-    
-    // ]
-    //get form data
-   
     //check if user exists
     const {email, password, firstName, lastName} = req.body; //destructure data from req body
     console.log("req email before try: ", email)

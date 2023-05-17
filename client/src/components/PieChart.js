@@ -33,7 +33,6 @@ export default function PieChart({fetchTransactions, transactions}){
         if (res.ok){
         
             const {data} = await res.json();
-            //console.log("right after fetching sums, data is:  ", data)
             setDataSum(data)
            
         }
